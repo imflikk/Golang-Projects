@@ -1,16 +1,16 @@
 package main
 
 import (
-	"os"
-	"log"
 	"fmt"
-	
-	"redteam.local/shodan"
+	"log"
+	"os"
+
+	"shodan-search/shodan"
 )
 
 func main() {
 	if len(os.Args) != 2 {
-	log.Fatalln("Usage: shodan searchterm")
+		log.Fatalln("Usage: main <searchterm>")
 	}
 	apiKey := os.Getenv("SHODAN_API_KEY")
 	s := shodan.New(apiKey)
@@ -19,7 +19,7 @@ func main() {
 		log.Panicln(err)
 	}
 	fmt.Printf(
-		"Query Credits: %d\nScan Credits: %d\n\n",
+		"Query Credits: %d\nScan Credits:  %d\n\n",
 		info.QueryCredits,
 		info.ScanCredits)
 
@@ -28,6 +28,8 @@ func main() {
 		log.Panicln(err)
 	}
 
+	fmt.Printf("%18s%8s\n", "IP", "Port")
+	fmt.Printf("%18s%8s\n", "------------------", "--------")
 	for _, host := range hostSearch.Matches {
 		fmt.Printf("%18s%8d\n", host.IPString, host.Port)
 	}

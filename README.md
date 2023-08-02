@@ -10,4 +10,6 @@ Various programs written in Golang from the book [Black Hat Go](https://nostarch
     - Updated dork used to retrieve specific file types as the original doesn't work anymore
     - Page structure of results appears to have changed breaking the original method of retrieving file.  Added regex check to locate URL of the actual document in each link followed and make a request to that before processing file metadata.
     - Added functionality to check any additional pages of results, if they exist.  This isn't perfect at the moment, but works well enough for now.
+  - ch4/websocket-keylogger
+    - Added functionality to write logged keystrokes to a file associated with the client IP it came from.
 
